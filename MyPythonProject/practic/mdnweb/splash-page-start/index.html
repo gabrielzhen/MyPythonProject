@@ -10,14 +10,13 @@
   <body>
     <header>
       <h1>Mozilla</h1>
-      <!-- 插入 <img> 元素，链接至较小的 Firefox 标志。 -->
-
+      <img src="image/mdn.svg" alt="aaa">
     </header>
 
     <main>
       <article>
-        <!-- 插入来自 Bilibili 的 <iframe> 元素 -->
-
+        <iframe src="https://www.bilibili.com/blackboard/webplayer/embed-whitelist-other.html?aid=3303261&bvid=BV1rs411d7hC&cid=5221343&page=2" width="400" height="200" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+        
         <h2>自由网络 尽情驰骋</h2>
 
         <p>Mozilla 是一个全球社区，这里聚集着来自五湖四海的 技术人员、思考者、建造者。我们致力于让 Internet 保持活力，保持畅通，人人皆可贡献，人人皆可创造。我们坚信：开放平台的协作对于人的发展至关重要，也决定着我们共同的未来。</p>
@@ -28,17 +27,18 @@
       <div class="further-info">
         <!-- 插入包含 srcsets 和 sizes 属性的图像 -->
         <a href="https://www.mozilla.org/zh-CN/firefox/new/">
-          <img>
+          <img src="image/mozilla-dinosaur-head_400.png" 
+          alt="aaa" 
+          sizes="(max-width:480px) 120px,400px"
+          srcset="image/mozilla-dinosaur-head_400.png 400px, image/mozilla-dinosaur-head_120.png 120px">
         </a>
         <a href="https://www.mozilla.org/">
-          <img>
+          <img src="image/firefox_logo-only_400.jpg" alt="">
         </a>
         <a href="https://addons.mozilla.org/">
-          <img>
+          <img src="image/firefox-addons_120.jpg" alt="">
         </a>
-        <a href="https://developer.mozilla.org/zh-CN/">
-          <img>
-        </a>
+
         <div class="clearfix"></div>
       </div>
 
