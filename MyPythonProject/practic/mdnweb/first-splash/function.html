@@ -60,6 +60,19 @@ btn.onclick = function() {
   displayMessage('Woo, this is a different message!');
 };
 
+const myObject = {
+  city: "Madrid",
+  greet() {
+    console.log(`来自 ${this.city} 的问候`);
+  },
+};
+const myDate = new Date();
+let object = myDate;
+
+do {
+  object = Object.getPrototypeOf(object);
+  console.log(object);
+} while (object);
     </script>
   </body>
 </html>
