@@ -2,10 +2,9 @@ from flask import Flask,url_for
 
 app=Flask(__name__)
 
-@app.route('/')
+@app.route('/',methods=['POST','GET'])
 def hello():
     return 'welcome to my watchlist!'
-
 @app.route('/user/<name>')
 def user_page(name):
     return f'name: {name}'
