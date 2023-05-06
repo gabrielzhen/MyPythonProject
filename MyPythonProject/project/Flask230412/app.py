@@ -25,29 +25,18 @@ class Movie(db.Model):  # 表名将会是 movie
 
 @app.route('/',methods=['POST','GET'])
 def index():
-    user=User.query.offset(1).first()
-    name=user.name
     movies=Movie.query.all()
-    return render_template('index.html',name=name,movies=movies)
+    return render_template('index.html',movies=movies)
 
+@app.context_processor
+def inject_user():  # 函数名可以随意修改
+    user = User.query.offset(1).first()
+    return dict(user=user)  # 需要返回字典，等同于 return {'user': user}
 
-@app.route('/user/<name>')
-def user_page(name):
-    return f'name: {name}'
-
-@app.route('/test')
-def test_url_for():
-    # 下面是一些调用示例（请访问 http://localhost:5000/test 后在命令行窗口查看输出的 URL）：
-    print(url_for('hello'))  # 生成 hello 视图函数对应的 URL，将会输出：/
-    # 注意下面两个调用是如何生成包含 URL 变量的 URL 的
-    print(url_for('user_page', name='greyli'))  # 输出：/user/greyli
-    print(url_for('user_page', name='peter'))  # 输出：/user/peter
-    print(url_for('test_url_for'))  # 输出：/test
-    # 下面这个调用传入了多余的关键字参数，它们会被作为查询字符串附加到 URL 后面。
-    print(url_for('test_url_for', num=2))  # 输出：/test?num=2
-    return 'ztj page'
-
-
+@app.errorhandler(404)  # 传入要处理的错误代码
+def page_not_found(e):  # 接受异常对象作为参数
+    user = User.query.first()
+    return render_template('404.html'), 404  # 返回模板和状态码
 
 #初始化数据
 @app.cli.command()
