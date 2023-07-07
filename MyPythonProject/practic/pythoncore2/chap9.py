@@ -94,5 +94,17 @@
     附加题：请阅读Python的re模块了解有关正则表达式的资料，使用正则表达式对用户输入的URL进行验证。
 
 '''
-#todo1编写一个文本标签管理类包括新增 修改 删除 查找功能并 保存，保存的事后可以利用参数获得文件夹管理功能，
-#todo2更具文件生成一个html文件并展示
+#todo1编写一个文本标签管理类包括新增 修改 删除 查找功能并 保存，保存的事后可以利用参数获得文件夹管理功能
+#def add(self):
+#    title=input('输入title')
+#    url=input('输入url')
+#    
+#
+#def modify(self):
+#    pass
+#
+#def delete(self):
+#    pass
+#
+#def search()
+##todo2更具文件生成一个html文件并展示
