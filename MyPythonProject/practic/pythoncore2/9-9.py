@@ -214,20 +214,55 @@ from random import randint,choice
 #         return '%d:%d'%(self.hr,self.min)
 # mon=time60(10,30)
 # print(mon)
-class aaa():
-    pass
-class wrapme(aaa):
-    def __init__(self,obj) -> None:
-        self._data=obj
-    def get(self):
-        return self._data
-    def __str__(self) -> str:
-        return str(self._data)
-    __repr__=__str__
-    # def __getattr__(self,stt):
-    #     return getattr(self._data,stt)
+# class aaa():
+#     pass
+# class wrapme(aaa):
+#     def __init__(self,obj) -> None:
+#         self._data=obj
+#     def get(self):
+#         return self._data
+#     def __str__(self) -> str:
+#         return str(self._data)
+#     __repr__=__str__
+#     # def __getattr__(self,stt):
+#     #     return getattr(self._data,stt)
     
 
-wrap=wrapme(3.5+4.2j)
-wra=wrap.get()
-print(wra.real)
+# wrap=wrapme(3.5+4.2j)
+# wra=wrap.get()
+# print(wra.real)
+import os,pickle
+
+class filedescr(object):
+    saved=[]
+
+    def __init__(self,name=None) -> None:
+        self.name=name
+
+    def __get__(self,obj,typ=None):
+        if self.name not in filedescr.saved:
+            raise AttributeError,'%r used before assignment'%self.name
+        
+        try:
+            f=open(self.name,'r')
+            val=pickle.load(f)   
+            f.close()
+            return val
+        except Exception as e:
+            raise AttributeError,'could not read %r'%self.name
+        
+    def __set__(self,obj,val):
+        f=open(self.name,'w')
+        try:
+            pickle.dump(val,f)
+        except Exception as e:
+            raise AttributeError,'could not pickle %s'%self.name
+        finally:
+            f.close()
+
+    def __delete__(self,obj):
+        try:
+            os.unlink(self.name)
+            filedescr.saved.remove(self.name)
+        except Exception as e:
+            pass    
