@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Term Frequency Chart</title>
+  <!-- 引入 D3.js 库 -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!-- 引入数据 -->
+  <script src="d3data.js"></script>
+</head>
+<body>
+
+<script>
+// 在页面加载完成后执行
+document.addEventListener('DOMContentLoaded', function () {
+  // 使用 D3.js 创建柱状图
+  var svg = d3.select('body')
+    .append('svg')
+    .attr('width', 500)
+    .attr('height', 300)
+    .append('g')
+    .attr('transform', 'translate(50, 50)');  // 调整图表位置
+
+  // 读取数据
+  var data = termFrequencyData;
+
+  // 创建柱状图
+  svg.selectAll('rect')
+    .data(data)
+    .enter().append('rect')
+    .attr('x', function (d, i) { return i * 30; })
+    .attr('y', function (d) { return 300 - d[1] * 2; })
+    .attr('width', 25)
+    .attr('height', function (d) { return d[1] * 2; });
+
+  // 添加标签
+  svg.selectAll('text')
+    .data(data)
+    .enter().append('text')
+    .attr('x', function (d, i) { return i * 30 + 12; })
+    .attr('y', function (d) { return 300 - d[1] * 2 - 5; })
+    .attr('dy', '.75em')
+    .text(function (d) { return d[1]; });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+{
+  "axes": [
+    {
+      "scale": "x",
+      "type": "x"
+    },
+    {
+      "scale": "y",
+      "type": "y"
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "col": "data",
+          "idx": "day",
+          "val": 476
+        },
+        {
+          "col": "data",
+          "idx": "game",
+          "val": 160
+        },
+        {
+          "col": "data",
+          "idx": "ireland",
+          "val": 143
+        },
+        {
+          "col": "data",
+          "idx": "england",
+          "val": 132
+        },
+        {
+          "col": "data",
+          "idx": "great",
+          "val": 105
+        },
+        {
+          "col": "data",
+          "idx": "today",
+          "val": 104
+        },
+        {
+          "col": "data",
+          "idx": "best",
+          "val": 97
+        },
+        {
+          "col": "data",
+          "idx": "well",
+          "val": 90
+        },
+        {
+          "col": "data",
+          "idx": "ever",
+          "val": 89
+        },
+        {
+          "col": "data",
+          "idx": "incredible",
+          "val": 87
+        },
+        {
+          "col": "data",
+          "idx": "amazing",
+          "val": 84
+        },
+        {
+          "col": "data",
+          "idx": "done",
+          "val": 82
+        },
+        {
+          "col": "data",
+          "idx": "amp",
+          "val": 71
+        },
+        {
+          "col": "data",
+          "idx": "games",
+          "val": 66
+        },
+        {
+          "col": "data",
+          "idx": "points",
+          "val": 64
+        },
+        {
+          "col": "data",
+          "idx": "monumental",
+          "val": 58
+        },
+        {
+          "col": "data",
+          "idx": "strap",
+          "val": 56
+        },
+        {
+          "col": "data",
+          "idx": "world",
+          "val": 55
+        },
+        {
+          "col": "data",
+          "idx": "team",
+          "val": 55
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "source": "table",
+      "transform": [
+        {
+          "keys": [
+            "data.idx"
+          ],
+          "type": "facet"
+        },
+        {
+          "type": "stats",
+          "value": "data.val"
+        }
+      ]
+    }
+  ],
+  "height": 500,
+  "legends": [],
+  "marks": [
+    {
+      "from": {
+        "data": "table",
+        "transform": [
+          {
+            "keys": [
+              "data.col"
+            ],
+            "type": "facet"
+          },
+          {
+            "height": "data.val",
+            "point": "data.idx",
+            "type": "stack"
+          }
+        ]
+      },
+      "marks": [
+        {
+          "properties": {
+            "enter": {
+              "fill": {
+                "field": "data.col",
+                "scale": "color"
+              },
+              "width": {
+                "band": true,
+                "offset": -1,
+                "scale": "x"
+              },
+              "x": {
+                "field": "data.idx",
+                "scale": "x"
+              },
+              "y": {
+                "field": "y",
+                "scale": "y"
+              },
+              "y2": {
+                "field": "y2",
+                "scale": "y"
+              }
+            }
+          },
+          "type": "rect"
+        }
+      ],
+      "type": "group"
+    }
+  ],
+  "padding": "auto",
+  "scales": [
+    {
+      "domain": {
+        "data": "table",
+        "field": "data.idx"
+      },
+      "name": "x",
+      "range": "width",
+      "type": "ordinal",
+      "zero": false
+    },
+    {
+      "domain": {
+        "data": "stats",
+        "field": "sum"
+      },
+      "name": "y",
+      "nice": true,
+      "range": "height"
+    },
+    {
+      "domain": {
+        "data": "table",
+        "field": "data.col"
+      },
+      "name": "color",
+      "range": "category20",
+      "type": "ordinal"
+    }
+  ],
+  "width": 960
+}
