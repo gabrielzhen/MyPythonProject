@@ -241,7 +241,7 @@ class filedescr(object):
 
     def __get__(self,obj,typ=None):
         if self.name not in filedescr.saved:
-            raise AttributeError,'%r used before assignment'%self.name
+            raise AttributeError('%r used before assignment' % self.name)
         
         try:
             f=open(self.name,'r')
@@ -249,18 +249,18 @@ class filedescr(object):
             f.close()
             return val
         except Exception as e:
-            raise AttributeError,'could not read %r'%self.name
+            raise AttributeError('could not read %r' % self.name) from e
         
-    def __set__(self,obj,val):
-        f=open(self.name,'w')
+    def __set__(self, obj, val):
+        f = open(self.name, 'w')
         try:
-            pickle.dump(val,f)
+            pickle.dump(val, f)
         except Exception as e:
-            raise AttributeError,'could not pickle %s'%self.name
+            raise AttributeError('could not pickle %s' % self.name) from e
         finally:
             f.close()
 
-    def __delete__(self,obj):
+    def __delete__(self, obj):
         try:
             os.unlink(self.name)
             filedescr.saved.remove(self.name)
