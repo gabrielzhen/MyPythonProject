@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>  
+<head>
+    <meta charset="utf-8">
+    <title>微博数据分析</title>
+    <!-- 引入 vega-lite -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+    <dir id="chart">    </dir>
+    <script>
+        fetch('most_common.json')
+        .then(response => response.json())
+        .then(data => {
+             console.log(data);
+             var dataArray = data;
+             const vegaLiteSpec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+        "data": {"values": dataArray},
+        "mark": {"type":"bar","angle":45},
+        "encoding": {
+    "x": {"field": "word", "type": "nominal", "axis": {"labelAngle": 0}},
+    "y": {"field": "count", "type": "quantitative"}
+  }
+        };
+        vegaEmbed("#chart", vegaLiteSpec)
+        .then(result => console.log(result))
+      .catch(error => console.error(error));
+        });
+        // .catch(error => console.error('Error:', error));;
+        
+    </script>
+</body>
+</html>
