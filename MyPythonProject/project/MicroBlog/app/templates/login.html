@@ -7,13 +7,20 @@
     {{form.hidden_tag()}}
     <p>
         {{form.username.lable}}<br>
-        {{form.username(size=32)}}
+        {{form.username(size=32)}}<br>
+        {%for error in form.username.errors %}
+        <span style="color:red;">[{{error}}]</span>
+        {%endfor%}
     </p>
     <p>
         {{form.password.lable}}<br>
-        {{form.password(size=32)}}
+        {{form.password(size=32)}}<br>
+        {%for error in form.password.errors %}
+        <span style="color:red;">[{{error}}]</span>
+        {%endfor%}
     </p>
     <p>{{form.remember_me()}} {{form.remember_me.label}} </p>
     <p> {{form.submit()}}</p>
+    <p>New User?<a href="/register">Click to register</a></p>
 </form>
 {%endblock%}
