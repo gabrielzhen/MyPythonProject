@@ -44,10 +44,17 @@ def logout():
     logout_user()
     return redirect('/index')
 
-@app.route('/register',method=['GET','POST'])
+@app.route('/register',methods=['GET','POST'])
 def register():
     if current_user.is_authenticated:
         return redirect('/index')
     form=RegistrationForm()
-    
+    if form.validate_on_submit():
+        user=User(username=form.username.data,email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('congratulations,ztj already become a god')     
+        return redirect('/login')
+    return render_template('register.html',title='Sign Up',form=form)
     
