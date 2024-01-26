@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 
+#创建实例app db migrate login等
 app=Flask(__name__)
 app.config.from_object(Config)
 db=SQLAlchemy(app)
@@ -11,4 +12,5 @@ migrate=Migrate(app,db)
 login=LoginManager(app)
 login.login_view='login'
 
-from app import routes,models
+# 创建应用实例后 注册后面的这些模块
+from app import routes,models,errors
