@@ -63,5 +63,18 @@
         crossorigin="anonymous">
     </script>
     {{moment.include_moment()}}
+   <script>
+    async function translate(sourceElem,destElem){
+        const response = await fetch('/translate', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json; charset=utf-8'},
+          body: JSON.stringify({
+            text: document.getElementById(sourceElem).innerText
+          })
+        })
+        const data = await response.json();
+        document.getElementById(destElem).innerText = data.text;
+    }
+   </script> 
     </body>
 </html>

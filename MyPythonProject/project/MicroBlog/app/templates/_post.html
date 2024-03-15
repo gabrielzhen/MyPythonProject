@@ -11,13 +11,13 @@
             </a>
             said {{moment(post.timestamp).fromNow()}}:
             <br>
-            {{ post.body }}
+            <span id="post{{post.id}}">{{ post.body }}</span>
         </td>
-        <td>
-            {{post.language}}
-            {{g.locale}}
+        <td width="10px">
             {%if post.language and post.language != g.locale%}
-            <a href="aaa">stranslate</a>
+            <span id="translation{{post.id}}"><a href="javascript:translate(
+                'post{{ post.id }}',
+                'translation{{ post.id }}');">stranslate</a></span>
             {%endif%}
         </td>
     </tr>
