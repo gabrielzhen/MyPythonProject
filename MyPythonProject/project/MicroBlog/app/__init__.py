@@ -1,19 +1,28 @@
 #包初始化操作
-from flask import Flask
+from flask import Flask,request
+from flask_babel import Babel
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 import logging
 from logging.handlers import SMTPHandler
+from flask_mail import Mail
+from flask_moment import Moment
 
+def get_local():
+    #return request.accept_languages.best_match(app.config['LANGUAGES'])
+    return 'en'
 #创建实例app db migrate login等
 app=Flask(__name__)
 app.config.from_object(Config)
 db=SQLAlchemy(app)
 migrate=Migrate(app,db)
+mail=Mail(app)
 login=LoginManager(app)
 login.login_view='login'
+moment=Moment(app)
+babel=Babel(app,locale_selector=get_local)
 
 if not app.debug:
     if app.config['MAIL_SERVER']:
