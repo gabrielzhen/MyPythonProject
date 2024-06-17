@@ -17,3 +17,5 @@ class Config:
     POSTS_PER_PAGE=5
 
     LANGUAGES=['en','zh']
+
+    ElASTICSEARCH_URL=os.environ.get('ELASTICSEARCH_URL')

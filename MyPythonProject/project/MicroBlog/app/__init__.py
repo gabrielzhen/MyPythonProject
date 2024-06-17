@@ -9,6 +9,7 @@ import logging
 from logging.handlers import SMTPHandler
 from flask_mail import Mail
 from flask_moment import Moment
+from elasticsearch import Elasticsearch
 
 def get_local():
     #return request.accept_languages.best_match(app.config['LANGUAGES'])
@@ -23,6 +24,7 @@ login=LoginManager(app)
 login.login_view='login'
 moment=Moment(app)
 babel=Babel(app,locale_selector=get_local)
+app.elasticsearch=Elasticsearch([app.config['ELASTICSEARCH_URL']])
 
 if not app.debug:
     if app.config['MAIL_SERVER']:
