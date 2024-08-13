@@ -5,8 +5,8 @@ rankd=[]
 def comb(lists,m):
     if len(rankd)==m:
         return rankd
-    elif m==1:
-        return lists
+    # elif m==1:
+    #     return lists
     else:
         for i in lists:
             sublists=lists[1:]
