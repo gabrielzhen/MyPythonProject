@@ -1,3 +1,5 @@
 {
-    "terminal.explorerKind": "integrated"
+    "terminal.explorerKind": "integrated",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": true
 }
